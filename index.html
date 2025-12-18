@@ -20,6 +20,17 @@
 
         <p style="text-align: center;">Una herramienta para automatizar el envío de mensajes de WhatsApp basados en un archivo CSV.</p>
 
+        <div class="dni-search-container form-group">
+            <label for="dni-search-input">Buscar Cliente por Codigo</label>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="dni-search-input" placeholder="Introduce el DNI" style="flex-grow: 1;">
+                <button id="dni-search-button" class="button" style="width: auto; margin: 0;">Buscar</button>
+            </div>
+            <div id="dni-search-result" style="margin-top: 10px;"></div>
+        </div>
+        
+        <hr style="margin: 2rem 0;">
+
         <form id="upload-form">
             <div class="form-group">
                 <label for="image-base-url">URL Base de Imágenes (guardado automático)</label>

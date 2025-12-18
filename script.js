@@ -11,6 +11,7 @@ let generatedCountSpan, sentCountSpan;
 let livePreviewBox, livePreviewContainer;
 let productImageTable, newProductForm;
 let columnMappingUi;
+let dniSearchInput, dniSearchButton, dniSearchResult;
 
 // App State
 let appConfig = {
@@ -20,7 +21,7 @@ let appConfig = {
 📦 Tu producto '{producto}' está listo para ser entregado.
 {imagen_url}
 
-El precio final es de *S/ {precio}*.
+El precio final es de *S/.{precio}*.
 
 🚚 Un motorizado se estará acercando el día {fecha} a tu ubicación: {ubicacion}.
 
@@ -81,6 +82,9 @@ function initializeDOMElements() {
     productImageTable = document.getElementById('product-image-table').querySelector('tbody');
     newProductForm = document.getElementById('new-product-form');
     columnMappingUi = document.getElementById('column-mapping-ui');
+    dniSearchInput = document.getElementById('dni-search-input');
+    dniSearchButton = document.getElementById('dni-search-button');
+    dniSearchResult = document.getElementById('dni-search-result');
 }
 
 function registerEventListeners() {
@@ -111,7 +115,39 @@ function registerEventListeners() {
     newProductForm.addEventListener('submit', handleAddProduct);
     productImageTable.addEventListener('click', handleProductTableClick);
     saveMappingBtn.addEventListener('click', handleSaveMapping);
+    dniSearchButton.addEventListener('click', handleDniSearch);
 }
+
+// --- DNI SEARCH --- //
+function handleDniSearch() {
+    const searchTerm = dniSearchInput.value.trim();
+    if (!searchTerm) {
+        dniSearchResult.innerHTML = '<span style="color: orange;">Por favor, introduce un DNI para buscar.</span>';
+        return;
+    }
+
+    if (csvData.data.length === 0) {
+        dniSearchResult.innerHTML = '<span style="color: red;">No hay datos CSV cargados. Por favor, sube un archivo primero.</span>';
+        return;
+    }
+
+    const dniColumn = appConfig.columnMapping.cod_cliente;
+    const nameColumn = appConfig.columnMapping.nombre;
+
+    if (!dniColumn || !nameColumn) {
+        dniSearchResult.innerHTML = '<span style="color: red;">El mapeo de columnas para DNI (cod_cliente) o nombre no está configurado.</span>';
+        return;
+    }
+    
+    const result = csvData.data.find(row => row[dniColumn] && row[dniColumn].trim() === searchTerm);
+
+    if (result) {
+        dniSearchResult.innerHTML = `<strong>Cliente Encontrado:</strong> ${result[nameColumn]}`;
+    } else {
+        dniSearchResult.innerHTML = `<span style="color: red;">No se encontró ningún cliente con el DNI: ${searchTerm}</span>`;
+    }
+}
+
 
 // --- CONFIG & STATE MANAGEMENT --- //
 
@@ -170,6 +206,7 @@ function handleCsvParsed(results) {
         csvData = { data: [], headers: [] };
     } else {
         csvData = { data: results.data, headers: results.meta.fields };
+        alert('Datos CSV cargados y listos para buscar.');
         renderColumnMappingUI(); // Trigger mapping UI
     }
     updateLivePreview();
