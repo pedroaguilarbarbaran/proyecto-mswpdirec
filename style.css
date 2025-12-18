@@ -1,0 +1,244 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f0f2f5;
+    padding: 2rem;
+    line-height: 1.6;
+}
+
+.container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: auto;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #128C7E;
+}
+
+h2 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+input[type="file"], input[type="date"], input[type="url"], input[type="text"], textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="file"], input[type="date"], input[type="url"], input[type="text"], textarea:focus {
+    border-color: #128C7E;
+    box-shadow: 0 0 0 3px rgba(18, 140, 126, 0.1);
+    outline: none;
+}
+
+.input-source-options label {
+    display: inline-block;
+    margin-right: 1rem;
+    font-weight: normal;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+button, .button {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background-color 0.2s;
+    text-align: center;
+    display: inline-block;
+}
+
+button:hover, .button:hover {
+    background-color: #128C7E;
+}
+
+.button-secondary {
+    background-color: #6c757d;
+}
+.button-secondary:hover {
+    background-color: #5a6268;
+}
+
+.button-danger {
+    background-color: #dc3545;
+}
+.button-danger:hover {
+    background-color: #c82333;
+}
+
+#messages-container, #history-container {
+    margin-top: 2rem;
+}
+
+.message-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+}
+
+.message-item p {
+    margin: 0;
+    flex-grow: 1;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.message-item .send-button {
+    background-color: #25D366;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 1rem;
+    cursor: pointer;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+#url-input-container {
+    display: none;
+}
+
+#history-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#history-list li {
+    padding: 0.75rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.header-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.header-controls h2 {
+    margin: 0;
+    border: none;
+}
+
+.header-controls .counter {
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #e9ecef;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+}
+
+.header-controls .button-small {
+    width: auto;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#live-preview {
+    background-color: #f8f9fa;
+    border: 1px dashed #ccc;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    white-space: pre-wrap;
+}
+
+#column-mapping-ui table, #product-image-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#column-mapping-ui th, #column-mapping-ui td,
+#product-image-table th, #product-image-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#column-mapping-ui th, #product-image-table th {
+    background-color: #f2f2f2;
+}
+
+#column-mapping-ui select, #product-image-table input {
+    width: 100%;
+}

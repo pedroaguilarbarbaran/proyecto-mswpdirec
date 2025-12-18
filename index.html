@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Mensajes Masivos a WhatsApp</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-controls">
+            <h1>Mensajes Masivos a WhatsApp</h1>
+            <div>
+                <button id="column-mapping-btn" class="button button-small button-secondary">Mapeo de Columnas</button>
+                <button id="settings-btn" class="button button-small">Configuración</button>
+            </div>
+        </div>
+
+        <p style="text-align: center;">Una herramienta para automatizar el envío de mensajes de WhatsApp basados en un archivo CSV.</p>
+
+        <form id="upload-form">
+            <div class="form-group">
+                <label for="image-base-url">URL Base de Imágenes (guardado automático)</label>
+                <input type="url" id="image-base-url" placeholder="https://tu-sitio.com/imagenes/">
+            </div>
+
+            <div class="form-group">
+                <label for="message-template">Plantilla del Mensaje (guardado automático)</label>
+                <textarea id="message-template" rows="10"></textarea>
+                <div id="live-preview-container" style="display: none;">
+                    <strong>Vista Previa:</strong>
+                    <div id="live-preview"></div>
+                </div>
+            </div>
+
+            <hr style="margin: 2rem 0;">
+
+            <div class="form-group input-source-options">
+                <label>Fuente de datos del CSV:</label>
+                <input type="radio" id="source-file" name="source" value="file" checked>
+                <label for="source-file">Subir Archivo</label>
+                <input type="radio" id="source-url" name="source" value="url">
+                <label for="source-url">Desde un Link</label>
+            </div>
+
+            <div id="file-input-container" class="form-group">
+                <label for="csv-file">Sube tu archivo CSV</label>
+                <input type="file" id="csv-file" accept=".csv">
+            </div>
+
+            <div id="url-input-container" class="form-group">
+                <label for="csv-url">Pega el link a tu archivo CSV</label>
+                <input type="url" id="csv-url" placeholder="https://ejemplo.com/archivo.csv">
+            </div>
+            
+            <div class="form-group">
+                <label for="delivery-date">Fecha de Entrega</label>
+                <input type="date" id="delivery-date" required>
+            </div>
+            
+            <button type="submit">Generar Mensajes</button>
+        </form>
+
+        <div class="header-controls">
+            <h2>Mensajes Generados <span id="generated-count" class="counter">0</span></h2>
+        </div>
+        <div id="messages-container">
+            <!-- Messages will be injected by JavaScript -->
+        </div>
+
+        <div class="header-controls">
+            <h2>Historial de Envío <span id="sent-count" class="counter">0</span></h2>
+            <button id="clear-history-btn" class="button button-small button-danger">Limpiar Historial</button>
+        </div>
+        <div id="history-container">
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Configurar Imágenes de Producto</h2>
+            <p>Asocia un nombre de producto (en minúsculas) con un nombre de archivo de imagen. Estos se guardan en tu navegador.</p>
+            <table id="product-image-table">
+                <thead>
+                    <tr>
+                        <th>Producto (ej: sustarox)</th>
+                        <th>Nombre del Archivo (ej: sustarox.png)</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Product-image mappings will be injected by JavaScript -->
+                </tbody>
+            </table>
+            <form id="new-product-form" style="margin-top: 1rem; display: flex; gap: 10px;">
+                <input type="text" id="new-product-name" placeholder="Nombre del producto" required style="flex-grow: 1;">
+                <input type="text" id="new-image-filename" placeholder="Nombre del archivo" required style="flex-grow: 1;">
+                <button type="submit" class="button" style="width: auto; margin: 0;">Añadir</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="column-mapping-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Mapeo de Columnas CSV</h2>
+            <p>Asigna las columnas de tu archivo CSV a los campos que la aplicación necesita.</p>
+            <div id="column-mapping-ui">
+                <!-- Column mapping rows will be injected by JavaScript -->
+            </div>
+            <button id="save-mapping-btn" class="button" style="margin-top: 1rem;">Guardar Mapeo</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
