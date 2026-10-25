@@ -25,9 +25,19 @@ MSWP es una aplicación web que permite enviar mensajes masivos a WhatsApp utili
 
 1. Abre index.html en un navegador.
 2. Configura la URL base de imágenes y la plantilla del mensaje.
-3. Sube o enlaza un archivo CSV con los datos de los contactos.
+3. Sube o enlaza un archivo CSV con los datos de los contactos. Puedes probar con `csv/ejemplo.csv`, que trae datos inventados.
 4. Mapea las columnas si es necesario.
 5. Envía los mensajes.
+
+## Formato del CSV
+
+Separado por punto y coma, con estas columnas:
+
+```
+nombre;telefono;producto;precio;cod_cliente;ubicacion
+```
+
+> **Privacidad:** los CSV con datos reales de clientes se quedan en tu computadora. El `.gitignore` impide subirlos al repositorio; solo se versiona el archivo de ejemplo.
 
 ## Instalación
 

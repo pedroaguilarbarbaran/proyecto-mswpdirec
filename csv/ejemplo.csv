@@ -1,0 +1,4 @@
+nombre;telefono;producto;precio;cod_cliente;ubicacion
+Cliente Ejemplo 1;900000001;Producto A;25.00;C001;Ciudad Ejemplo
+Cliente Ejemplo 2;900000002;Producto B;40.50;C002;Ciudad Ejemplo
+Cliente Ejemplo 3;900000003;Producto C;12.90;C003;Ciudad Ejemplo
